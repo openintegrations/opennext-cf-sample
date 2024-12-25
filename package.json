@@ -1,0 +1,44 @@
+{
+  "name": "@openint/web",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "build": "next build",
+    "build:css": "tailwindcss -i ./app/global.css -o ./app/tailwind.css --minify",
+    "build:migration": "if [ \"$VERCEL_ENV\" = production ] || [ \"$VERCEL_GIT_COMMIT_REF\" = main ]; then pnpm --dir ../../ run-migration; else echo 'Skip non prod/staging migration'; fi",
+    "build:next": "next build --debug",
+    "build:worker": " cloudflare",
+    "codegen:supabase": "supabase gen types typescript --linked --schema public > ./supabase/supabase.gen.d.ts",
+    "deploy:worker": "pnpm run build:worker && wrangler deploy",
+    "dev": "next dev -p 4000",
+    "dev:worker": "npx wrangler dev --port 4000",
+    "preview:worker": "pnpm run build:worker && pnpm run dev:worker",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@opennextjs/cloudflare": "https://pkg.pr.new/@opennextjs/cloudflare@2ab976f",
+    "drizzle-orm": "^0.38.2",
+    "next": "14.2.13",
+    "postgres": "^3.4.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@sentry/cli": "^2.36.6",
+    "@types/http-proxy": "1.17.10",
+    "@types/react": "18.0.27",
+    "@types/react-dom": "18.0.10",
+    "@types/swagger2openapi": "7.0.0",
+    "autoprefixer": "*",
+    "jiti": "*",
+    "node-loader": "2.0.0",
+    "postcss": "^8.4.47",
+    "tailwindcss": "3.4.12",
+    "tailwindcss-animate": "^1.0.7",
+    "tailwindcss-radix": "^3.0.5",
+    "tilg": "0.1.1",
+    "typescript": "5.7.2",
+    "webpack": "*",
+    "wrangler": "^3.95.0"
+  }
+}
