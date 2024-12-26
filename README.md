@@ -2,9 +2,11 @@
 
 This is a repo to act as a reference for the issues we've encountered with OpenNext Cloudflare's experimental branch (Dec 25 2024).
 
+Github issue https://github.com/brianc/node-postgres/issues/3349#issuecomment-2561969479
+
 ## Dependencies
 
-- "@opennextjs/cloudflare": "https://pkg.pr.new/@opennextjs/cloudflare@2ab976f" (experimental branch, albeit this occurs in main)
+- "@opennextjs/cloudflare": "0.3.2" (e)
 - "next": "14.2.13",
 - "pg": "8.13.1",
 
@@ -26,7 +28,7 @@ Error: The script will never generate a response.
 Only by moving to 'node-pg' does it work, as long as we patch the missing index.js cloudflare-pg file described here:
 https://github.com/brianc/node-postgres/issues/3349#issuecomment-2561969479
 
-## Issue 2: /api/body
+## Issue 2: /api/body [fixed on main 0.3.2]
 
 Body parsing gets stuck and returns a 500 error
 
